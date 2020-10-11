@@ -9,21 +9,23 @@
 /* Begin PBXBuildFile section */
 		2146E2EA2532907000C7D8D5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146E2E92532907000C7D8D5 /* AppDelegate.swift */; };
 		2146E2EC2532907000C7D8D5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146E2EB2532907000C7D8D5 /* SceneDelegate.swift */; };
-		2146E2EE2532907000C7D8D5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146E2ED2532907000C7D8D5 /* ViewController.swift */; };
+		2146E2EE2532907000C7D8D5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146E2ED2532907000C7D8D5 /* LoginViewController.swift */; };
 		2146E2F12532907000C7D8D5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2146E2EF2532907000C7D8D5 /* Main.storyboard */; };
 		2146E2F32532907100C7D8D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2146E2F22532907100C7D8D5 /* Assets.xcassets */; };
 		2146E2F62532907100C7D8D5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2146E2F42532907100C7D8D5 /* LaunchScreen.storyboard */; };
+		2146E3052532956500C7D8D5 /* BiometricType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2146E3042532956500C7D8D5 /* BiometricType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2146E2E62532907000C7D8D5 /* SecureLogin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecureLogin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2146E2E92532907000C7D8D5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2146E2EB2532907000C7D8D5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2146E2ED2532907000C7D8D5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2146E2ED2532907000C7D8D5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2146E2F02532907000C7D8D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2146E2F22532907100C7D8D5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2146E2F52532907100C7D8D5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2146E2F72532907100C7D8D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2146E3042532956500C7D8D5 /* BiometricType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +58,48 @@
 		2146E2E82532907000C7D8D5 /* SecureLogin */ = {
 			isa = PBXGroup;
 			children = (
-				2146E2E92532907000C7D8D5 /* AppDelegate.swift */,
-				2146E2EB2532907000C7D8D5 /* SceneDelegate.swift */,
-				2146E2ED2532907000C7D8D5 /* ViewController.swift */,
+				2146E2FE2532907F00C7D8D5 /* Support */,
+				2146E3012532954800C7D8D5 /* LoginScreen */,
 				2146E2EF2532907000C7D8D5 /* Main.storyboard */,
-				2146E2F22532907100C7D8D5 /* Assets.xcassets */,
-				2146E2F42532907100C7D8D5 /* LaunchScreen.storyboard */,
-				2146E2F72532907100C7D8D5 /* Info.plist */,
 			);
 			path = SecureLogin;
+			sourceTree = "<group>";
+		};
+		2146E2FE2532907F00C7D8D5 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				2146E2F72532907100C7D8D5 /* Info.plist */,
+				2146E2F42532907100C7D8D5 /* LaunchScreen.storyboard */,
+				2146E2F22532907100C7D8D5 /* Assets.xcassets */,
+				2146E2E92532907000C7D8D5 /* AppDelegate.swift */,
+				2146E2EB2532907000C7D8D5 /* SceneDelegate.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		2146E3012532954800C7D8D5 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				2146E3022532954E00C7D8D5 /* Model */,
+				2146E3032532955300C7D8D5 /* Controller */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		2146E3022532954E00C7D8D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2146E3042532956500C7D8D5 /* BiometricType.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2146E3032532955300C7D8D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2146E2ED2532907000C7D8D5 /* LoginViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +172,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2146E2EE2532907000C7D8D5 /* ViewController.swift in Sources */,
+				2146E2EE2532907000C7D8D5 /* LoginViewController.swift in Sources */,
 				2146E2EA2532907000C7D8D5 /* AppDelegate.swift in Sources */,
+				2146E3052532956500C7D8D5 /* BiometricType.swift in Sources */,
 				2146E2EC2532907000C7D8D5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,7 +324,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69P6K7C2T4;
-				INFOPLIST_FILE = SecureLogin/Info.plist;
+				INFOPLIST_FILE = SecureLogin/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +343,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69P6K7C2T4;
-				INFOPLIST_FILE = SecureLogin/Info.plist;
+				INFOPLIST_FILE = SecureLogin/Support/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

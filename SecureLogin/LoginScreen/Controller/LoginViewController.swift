@@ -8,37 +8,30 @@
 import UIKit
 import LocalAuthentication
 
-enum BiometricType {
-    
-    case none
-    case touchId
-    case faceId
-}
-
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var emailTextField: UITextField! {
-        didSet {
-            emailTextField.layer.cornerRadius = emailTextField.bounds.height / 2
-        }
-    }
-    @IBOutlet weak var passwordTextField: UITextField! {
-        didSet {
-            passwordTextField.layer.cornerRadius = passwordTextField.bounds.height / 2
-        }
-    }
-    @IBOutlet weak var loginButton: UIButton! {
-        didSet {
-            loginButton.layer.cornerRadius = loginButton.bounds.height / 2
-        }
-    }
+    // MARK: - IBOutlet
+    
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    
+    // MARK: - Variables
     
     private let context = LAContext()
     private var loginReason = "Logging in with Touch ID"
+    
+    // MARK: - View Life Cycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    // MARK: - IBActions
+    
+    
+    
+    // MARK: - Auth Functions
     
     private func authenticateUser() {
         
