@@ -28,9 +28,11 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Srt-bN-vUZ">
                                         <rect key="frame" x="0.0" y="63.5" width="286" height="40"/>
+                                        <color key="tintColor" systemColor="systemPinkColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="lJg-GL-kun"/>
                                         </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
@@ -42,9 +44,11 @@
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="j6o-JF-6KD">
                                                         <rect key="frame" x="0.0" y="0.0" width="246" height="40"/>
+                                                        <color key="tintColor" systemColor="systemPinkColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="Ers-2t-nNM"/>
                                                         </constraints>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>

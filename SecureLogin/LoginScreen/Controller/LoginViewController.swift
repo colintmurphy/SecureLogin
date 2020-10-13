@@ -20,15 +20,15 @@ class LoginViewController: UIViewController {
     // MARK: - Variables
     
     private let context = LAContext()
-    private var loginReason = "Logging in with Touch ID"
+    private var loginReason = "User Authentication"
     
     private let email = "colin@gmail.com"
     private let password = "password"
+    private var biometricType: BiometricType = .none
     
     // MARK: - View Life Cycles
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         setup()
     }
@@ -40,43 +40,47 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction private func login(_ sender: Any) {
-        checkLogin()
-    }
-    
-    // MARK: - Regular Auth
-    
-    private func checkLogin() {
         
-        let currentEmail = emailTextField.text
-        let currentPassword = passwordTextField.text
-        
-        if currentEmail == email && currentPassword == password {
-            self.showAlert(title: "Success!", message: "You've been logged in.")
-        } else {
-            self.showAlert(title: "Sorry", message: "It looks like either your email and/or password was incorrect.")
+        guard let currentEmail = emailTextField.text,
+              let currentPassword = passwordTextField.text else {
+            showAlert(title: "Oops!", message: "Please make sure you enter you email and you password.")
+            return
         }
+        checkIfLoginValid(email: currentEmail, password: currentPassword)
     }
     
     // MARK: - Biometric Auth
     
     private func authenticateUserUsingBiometrics() {
         
-        guard canEvaluatePolicy() else { return }
+        guard canEvaluatePolicy() else {
+            showAlert(title: "Oops!", message: "It looks like you need to enable \(biometricType.rawValue).")
+            return
+        }
+        
+        guard let email = emailTextField.text,
+              !email.isEmpty else {
+            showAlert(title: "Oops!", message: "Please make sure you enter you email.")
+            return
+        }
         
         context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: loginReason) { success, error in
-            
             if success {
                 DispatchQueue.main.async {
-                    self.showAlert(title: "Success!", message: "You've been logged in.")
+                    
+                    if let password = KeychainWrapper.standard.string(forKey: email) {
+                        self.checkIfLoginValid(email: email, password: password)
+                    } else {
+                        self.showAlert(title: "Sorry", message: "Please ensure your email is correct. If you are logging in for the first time, please login with your password before using \(self.biometricType.rawValue).")
+                    }
                 }
-            } else {
-                self.showAlert(title: "Error", message: "We could not log you in with FaceID.")
             }
         }
     }
     
+    // MARK: - Biometric Setup Helpers
+    
     private func canEvaluatePolicy() -> Bool {
-        // ask for 
         return context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
     }
     
@@ -85,21 +89,29 @@ class LoginViewController: UIViewController {
         let _ = context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil)
         switch context.biometryType {
         case .none:
+            biometricType = BiometricType.none
             biometricButton.isHidden = true
         case .touchID:
-            if #available(iOS 13.0, *) {
-                biometricButton.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
-            } else {
-                // Fallback on earlier versions
-            }
+            biometricType = .touchId
+            biometricButton.setBackgroundImage(UIImage(systemName: "touchid"), for: .normal)
         case .faceID:
-            if #available(iOS 13.0, *) {
-                biometricButton.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
-            } else {
-                // Fallback on earlier versions
-            }
+            biometricType = .faceId
+            biometricButton.setBackgroundImage(UIImage(systemName: "faceid"), for: .normal)
         @unknown default:
+            biometricType = BiometricType.none
             biometricButton.isHidden = true
+        }
+    }
+    
+    // MARK: - Check Credentials
+    
+    private func checkIfLoginValid(email: String, password: String) {
+        
+        if self.email == email && self.password == password {
+            showAlert(title: "Success!", message: "You've been logged in.")
+            KeychainWrapper.standard.set(password, forKey: email)
+        } else {
+            showAlert(title: "Sorry", message: "It looks like either your email and/or password was incorrect.")
         }
     }
     
@@ -113,6 +125,8 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        
+        showAlert(title: "Welcome!", message: "The email and password to test this demo app is colin@gmail.com and password.")
     }
     
     @objc private func dismissKeyboard() {

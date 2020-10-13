@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum BiometricType {
+enum BiometricType: String {
     
     case none
-    case touchId
-    case faceId
+    case touchId = "Touch ID"
+    case faceId = "Face ID"
 }
